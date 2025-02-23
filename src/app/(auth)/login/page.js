@@ -10,6 +10,7 @@ export default function Page() {
   const [state, formAction, pending] = useActionState(loginAction, null);
 
   return (
+<<<<<<< HEAD
     <main className="space-y-3 px-3 py-3">
       <section>
         <h3 className="font-bold text-lg">Login to your account</h3>
@@ -41,6 +42,16 @@ export default function Page() {
             />
           </div>
         </div>
+=======
+    <main className="space-y-5 px-3 pb-3">
+      <section className="text-center px-3">
+        <h3 className="font-semibold text-lg">Login to your account</h3>
+        <p className="text-sm">Welcome back! Please enter your details</p>
+      </section>
+      <form action={formAction} className="space-y-2">
+        <Input name="email" type="email" placeholder="Email" />
+        <Input name="password" type="password" placeholder="Password" />
+>>>>>>> 74926fa (register and login)
         <Button
           type="submit"
           variant="solid"
@@ -54,9 +65,15 @@ export default function Page() {
       </form>
       <OAuthButton />
       <section>
+<<<<<<< HEAD
         <p className="text-sm">
           Don&apos;t have an account ?{" "}
           <Link className="font-semibold text-indigo-700" href="/register">
+=======
+        <p>
+          Don&apos;t have an account ?{" "}
+          <Link className="text-blue-700" href="/register">
+>>>>>>> 74926fa (register and login)
             Register
           </Link>
         </p>
