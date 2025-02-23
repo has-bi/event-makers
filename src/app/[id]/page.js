@@ -1,5 +1,5 @@
 import { prisma } from "@/utils/prisma";
-import { MapPinned } from "lucide-react";
+import { MapPinned, CalendarIcon, UserPlusIcon } from "lucide-react";
 import moment from "moment";
 import React from "react";
 
@@ -8,70 +8,84 @@ export default async function Page({ params }) {
 
   const event = await prisma.event.findUnique({
     where: { id },
-    include: { attendees: true }, //Take user sign from event
+    include: { attendees: true },
   });
 
   if (!event) {
-    return <div>Event not found !</div>;
+    return <div>Event not found!</div>;
   }
 
   return (
-    <main className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-2xl shadow-lg max-w-2xl w-full flex text-black">
-        {/* Image taken from Database */}
-        <div className="w-1/3 h-40 bg-gray-300 rounded-lg mr-4">
-          {event.image}
-        </div>
-        <div className="w-2/3">
-          <h1 className="text-2xl font-bold">{event.title}</h1>
+    <main className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+      <div className="max-w-xl w-full bg-white shadow-lg rounded-2xl p-6">
+        {/* Event Image */}
+        {event.image ? (
+          <img
+            src={event.image}
+            alt={event.title}
+            className="w-full h-48 object-cover rounded-lg mb-6"
+          />
+        ) : (
+          <div className="w-full h-48 bg-gray-300 rounded-lg mb-6"></div>
+        )}
 
-          {/* Date and Time from Database */}
-          <div className="flex items-center space-x-2 mt-2">
-            <div className="flex">
-              <div>
-                <h3 className="font-bold">Start Date</h3>
-                <p>{moment(event.startDatetime).format("ddd, MMM YYYY")}</p>
-                <p>{moment(event.startDatetime).format("hh:mm a")}</p>
-              </div>
-              <div>
-                <h3 className="font-bold ml-4">End Date</h3>
-                <p>{moment(event.endDatetime).format("ddd, MMM YYYY")}</p>
-                <p>{moment(event.endDatetime).format("hh:mm a")}</p>
-              </div>
-            </div>
-          </div>
+        <h1 className="text-2xl font-bold text-center mb-4">{event.title}</h1>
 
-          {/* Pin icon and location from Database */}
-          <div className="flex items-center space-x-2 mt-2">
-            <div className="bg-gray-200 p-2 rounded-full">
-              <MapPinned size={16} />
-            </div>
-            <div>
-              <p>{event.location}</p>
-              <p>Indonesia</p>
-            </div>
+        {/* Date and Time */}
+        <section className="flex gap-4 items-center mb-4">
+          <div className="w-12 h-12 flex justify-center items-center rounded-lg bg-gray-100">
+            <CalendarIcon size={20} />
           </div>
+          <div>
+            <p>
+              {moment(event.startDate).format("Do")} -
+              {moment(event.endDate).format("Do MMMM, YYYY")}
+            </p>
+            <p>
+              {moment(event.startDate).format("hh:mm a")} -
+              {moment(event.endDate).format("hh:mm a")}
+            </p>
+          </div>
+        </section>
 
-          {/* Event description from Database */}
-          <div className="mt-4">
-            <h3 className="font-semibold">About Event</h3>
-            <p>{event.description}</p>
+        {/* Location */}
+        <section className="flex gap-4 items-center mb-4">
+          <div className="w-12 h-12 flex justify-center items-center rounded-lg bg-gray-100">
+            <MapPinned size={20} />
           </div>
+          <div>
+            <p>{event.location}</p>
+            <p>Indonesia</p>
+          </div>
+        </section>
 
-          {/* attendees from Database */}
-          <div className="mt-4">
-            <h3 className="font-semibold">Attendees</h3>
-            {event.attendees.length > 0 ? (
-              <ul className="list-disc pl-5">
-                {event.attendees.map((attendee) => (
-                  <li key={attendee.id}>{attendee.name}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>No attendees yet.</p>
-            )}
-          </div>
-        </div>
+        {/* About Event */}
+        <section className="mb-4">
+          <h3 className="font-semibold">About Event</h3>
+          <p>{event.description}</p>
+        </section>
+
+        {/* Attendees */}
+        <section className="mb-4">
+          <h3 className="font-semibold">Attendees</h3>
+          {event.attendees.length > 0 ? (
+            <ul className="list-disc pl-5">
+              {event.attendees.map((attendee) => (
+                <li key={attendee.id}>{attendee.name}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No attendees yet.</p>
+          )}
+        </section>
+
+        {/* Register Button */}
+        <Button
+          color="primary"
+          className="w-full flex justify-center items-center gap-2 px-6 py-3 text-medium"
+        >
+          <UserPlusIcon size={20} /> Register to Event
+        </Button>
       </div>
     </main>
   );
