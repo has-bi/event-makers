@@ -13,20 +13,24 @@ export default function LandingPage() {
           <a className="text-2xl font-bold text-indigo-500">EventMakers.</a>
 
           <div className="flex gap-3">
-            <Button
-              color="default"
-              variant="bordered"
-              className="font-medium rounded-lg"
-            >
-              Login
-            </Button>
-            <Button
-              color="primary"
-              variant="solid"
-              className="font-medium rounded-lg bg-indigo-500"
-            >
-              Register
-            </Button>
+            <Link href="/login">
+              <Button
+                color="default"
+                variant="bordered"
+                className="font-medium rounded-lg"
+              >
+                Login
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button
+                color="primary"
+                variant="solid"
+                className="font-medium rounded-lg bg-indigo-500"
+              >
+                Register
+              </Button>
+            </Link>
           </div>
         </nav>
       </header>

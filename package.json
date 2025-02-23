@@ -20,6 +20,8 @@
     "@heroui/select": "^2.4.13",
     "@internationalized/date": "^3.7.0",
     "@prisma/client": "^6.4.1",
+    "arctic": "^3.3.0",
+    "bcrypt": "^5.1.1",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",
     "moment": "^2.30.1",
