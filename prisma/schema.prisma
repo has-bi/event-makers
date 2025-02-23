@@ -32,6 +32,7 @@ model Event {
   startDatetime DateTime
   endDatetime DateTime
   location    String
+  image       String?
   status      String
   capacity    Int
   createdAt   DateTime @default(now())
