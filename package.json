@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@heroui/button": "^2.2.13",
+    "@heroui/card": "^2.2.13",
     "@heroui/react": "^2.7.2",
     "@prisma/client": "^6.4.1",
     "framer-motion": "^12.4.7",
