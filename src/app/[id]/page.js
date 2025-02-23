@@ -1,6 +1,7 @@
 import { prisma } from "@/utils/prisma";
 import { MapPinned, CalendarIcon, UserPlusIcon } from "lucide-react";
 import moment from "moment";
+import Link from "next/link";
 import React from "react";
 
 export default async function Page({ params }) {
@@ -80,6 +81,7 @@ export default async function Page({ params }) {
         </section>
 
         {/* Register Button */}
+        <Link href={`/register/${event.id}`}></Link>
         <Button
           color="primary"
           className="w-full flex justify-center items-center gap-2 px-6 py-3 text-medium"
