@@ -38,6 +38,7 @@ export async function loginAction(_, formData) {
     };
   }
 
+<<<<<<< HEAD
   let currentDate = new Date();
   let newDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
 
@@ -56,4 +57,7 @@ export async function loginAction(_, formData) {
   });
 
   redirect("/discover");
+=======
+  redirect("/");
+>>>>>>> 34f9984 (register and login)
 }

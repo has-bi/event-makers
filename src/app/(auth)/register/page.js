@@ -4,15 +4,17 @@ import { useActionState } from "react";
 import { registerAction } from "./registerAction";
 import { Button, Input } from "@heroui/react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import OAuthButton from "../_components/OAuthButton";
 =======
->>>>>>> 74926fa (register and login)
+>>>>>>> 34f9984 (register and login)
 import Link from "next/link";
 
 export default function Page() {
   const [state, formAction, pending] = useActionState(registerAction, null);
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
     <main className="space-y-3 px-3 py-3">
       <section>
@@ -62,7 +64,7 @@ export default function Page() {
         <Input name="name" placeholder="Fullname" />
         <Input name="email" type="email" placeholder="Email" />
         <Input name="password" type="password" placeholder="Password" />
->>>>>>> 74926fa (register and login)
+>>>>>>> 34f9984 (register and login)
         <Button
           type="submit"
           variant="primary"
@@ -74,6 +76,7 @@ export default function Page() {
         </Button>
       </form>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <OAuthButton />
       <section>
         <p className="text-sm">
@@ -81,10 +84,10 @@ export default function Page() {
           <Link className="font-semibold text-indigo-700" href="/login">
 =======
       <section>
-        <p className="text-sm">
+        <p>
           Have an account ?{" "}
           <Link className="text-blue-700" href="/login">
->>>>>>> 74926fa (register and login)
+>>>>>>> 34f9984 (register and login)
             Login
           </Link>
         </p>
