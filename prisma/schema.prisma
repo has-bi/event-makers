@@ -23,6 +23,7 @@ model User {
 
   events     Event[] @relation("UserEvents")
   participants Participant[]
+  sessions Session[]
 }
 
 model Event {
@@ -51,4 +52,16 @@ model Participant {
 
   event     Event @relation(fields: [eventId], references: [id])
   user      User @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id        String   @id @default(uuid())  // Added @default(uuid()) to match other models
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expires   DateTime
+  data      String?  
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expires])
 }
