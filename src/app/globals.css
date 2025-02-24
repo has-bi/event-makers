@@ -6,6 +6,10 @@
   body {
     @apply bg-slate-100 tracking-tight;
   }
+
+  label {
+    @apply font-medium text-sm;
+  }
 }
 
 @layer components {
@@ -14,7 +18,7 @@
   }
 
   .btn-secondary {
-    @apply bg-indigo-700 hover:bg-indigo-600 text-white font-medium;
+    @apply bg-slate-300 hover:bg-slate-100 text-black font-medium;
   }
 
   .group.flex.flex-col {
