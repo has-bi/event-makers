@@ -81,7 +81,7 @@ export default function Page() {
           <Link className="font-semibold text-indigo-700" href="/login">
 =======
       <section>
-        <p>
+        <p className="text-sm">
           Have an account ?{" "}
           <Link className="text-blue-700" href="/login">
 >>>>>>> 74926fa (register and login)
