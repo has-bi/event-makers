@@ -2,21 +2,21 @@
 
 import { useActionState } from "react";
 import { registerAction } from "./registerAction";
-import { Form, Button, Input } from "@heroui/react";
+import { Button, Input } from "@heroui/react";
 import Link from "next/link";
 
 export default function Page() {
   const [state, formAction, pending] = useActionState(registerAction, null);
 
   return (
-    <main className="space-y-5 px-3 pb-3">
-      <section className="text-center">
+    <main className="space-y-3 px-3 py-3">
+      <section>
         <h3 className="font-bold text-lg">Register</h3>
         <p className="text-sm">Create an account and start to join event</p>
       </section>
 
-      <Form action={formAction} className="space-y-2 w-full max-w-xs">
-        <div className="flex flex-col gap-4">
+      <form action={formAction} className="w-full max-w-xs">
+        <div className="flex flex-col gap-3 pb-3">
           <Input
             isRequired
             name="name"
@@ -47,7 +47,7 @@ export default function Page() {
         >
           Register
         </Button>
-      </Form>
+      </form>
       <section>
         <p className="text-sm">
           Have an account ?{" "}

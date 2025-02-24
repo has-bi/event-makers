@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { loginAction } from "./loginAction";
-import { Form, Button, Input } from "@heroui/react";
+import { Button, Input } from "@heroui/react";
 import Link from "next/link";
 import OAuthButton from "../_components/OAuthButton";
 
@@ -10,16 +10,16 @@ export default function Page() {
   const [state, formAction, pending] = useActionState(loginAction, null);
 
   return (
-    <main className="space-y-5 px-3 pb-3">
-      <section className="text-center px-3">
+    <main className="space-y-3 px-3 py-3">
+      <section>
         <h3 className="font-bold text-lg">Login to your account</h3>
         <div className="text-sm">
           <p>Welcome back!</p>
           <p>please enter your details</p>
         </div>
       </section>
-      <Form action={formAction} className="space-y-2">
-        <div className="flex flex-col gap-4">
+      <form action={formAction} className="w-full max-w-xs">
+        <div className="flex flex-col gap-3 pb-3">
           <Input
             isRequired
             name="email"
@@ -45,7 +45,7 @@ export default function Page() {
         >
           Login
         </Button>
-      </Form>
+      </form>
       <OAuthButton />
       <section>
         <p className="text-sm">
