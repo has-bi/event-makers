@@ -37,20 +37,23 @@ export const FormUpdate = ({ id, name, email, password }) => {
       <main className="flex-1 p-10 bg-white shadow-md rounded-lg mx-6 my-6">
         <h2 className="text-2xl font-bold mb-6">Personal Information</h2>
         <form action={formAction} className="space-y-2">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid gap-6">
             <input name="id" defaultValue={id} hidden />
+            <p className="font-bold">Full Name</p>
             <input
               name="name"
               defaultValue={name}
               placeholder="Full Name"
               className="border p-3 w-full rounded-md"
             />
+            <p className="font-bold">Email</p>
             <input
               name="email"
               defaultValue={email}
               placeholder="Email Address"
               className="border p-3 w-full rounded-md"
             />
+            <p className="font-bold">Password</p>
             <input
               name="password"
               defaultValue={password}
