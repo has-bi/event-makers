@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // /app/api/events/route.js
+=======
+// /api/events/route.js
+>>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
 import { NextResponse } from "next/server";
 import { prisma } from "@/utils/prisma";
 import { cookies } from "next/headers";
@@ -12,6 +16,7 @@ export async function POST(request) {
 
     console.log("Received data:", data);
 
+<<<<<<< HEAD
     // 2) Validate required fields
     console.log("Validating fields...");
     const missingFields = [];
@@ -24,12 +29,24 @@ export async function POST(request) {
 
     if (missingFields.length > 0) {
       console.log("Missing fields:", missingFields);
+=======
+    // Validate required fields
+    if (
+      !data.title ||
+      !data.description ||
+      !data.startDatetime ||
+      !data.endDatetime ||
+      !data.location ||
+      !data.capacity
+    ) {
+>>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
+<<<<<<< HEAD
     // 3) Retrieve session cookie (asynchronously)
     const cookieStore = await cookies();
     const sessionId = cookieStore.get("sessionId")?.value;
@@ -58,6 +75,8 @@ export async function POST(request) {
 
     // 5) Create the event with a valid user ID
     console.log("All fields validated, attempting to create event");
+=======
+>>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
     const event = await prisma.event.create({
       data: {
         title: data.title,
@@ -67,8 +86,13 @@ export async function POST(request) {
         location: data.location,
         capacity: parseInt(data.capacity),
         status: data.status || "OPEN",
+<<<<<<< HEAD
         image: data.image,
         creatorId: user.id, // must match a real User.id
+=======
+        image: data.image || null,
+        creatorId: "user-id", // Temporary until auth is implemented
+>>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
       },
     });
 
@@ -104,11 +128,15 @@ export async function GET() {
     }
 
     return NextResponse.json(
+<<<<<<< HEAD
       {
         error: "Failed to fetch events",
         details: error.message,
         code: error.code,
       },
+=======
+      { error: "Error fetching events" },
+>>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
       { status: 500 }
     );
   }
