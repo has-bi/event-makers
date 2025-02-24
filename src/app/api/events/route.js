@@ -4,24 +4,30 @@ import { prisma } from "@/utils/prisma";
 
 export async function POST(request) {
   try {
+    console.log("Starting POST request handling");
+
     const data = await request.json();
+    console.log("Successfully parsed request data:", data);
 
-    console.log("Received data:", data);
+    // Validation logging
+    console.log("Validating fields...");
+    const missingFields = [];
+    if (!data.title) missingFields.push("title");
+    if (!data.description) missingFields.push("description");
+    if (!data.startDatetime) missingFields.push("startDatetime");
+    if (!data.endDatetime) missingFields.push("endDatetime");
+    if (!data.location) missingFields.push("location");
+    if (!data.capacity) missingFields.push("capacity");
 
-    // Validate required fields
-    if (
-      !data.title ||
-      !data.description ||
-      !data.startDatetime ||
-      !data.endDatetime ||
-      !data.location ||
-      !data.capacity
-    ) {
+    if (missingFields.length > 0) {
+      console.log("Missing fields:", missingFields);
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Missing required fields", fields: missingFields },
         { status: 400 }
       );
     }
+
+    console.log("All fields validated, attempting to create event");
 
     const event = await prisma.event.create({
       data: {
@@ -32,39 +38,31 @@ export async function POST(request) {
         location: data.location,
         capacity: parseInt(data.capacity),
         status: data.status || "OPEN",
-        image: data.image || null,
-        creatorId: "user-id", // Temporary until auth is implemented
+        image: data.image,
+        creatorId: "user-id",
       },
     });
 
+    console.log("Event created successfully:", event);
     return NextResponse.json({ event }, { status: 201 });
   } catch (error) {
-    console.error("Server error:", error);
-    // Fixed the syntax error in the error response
-    return NextResponse.json(
-      { error: "Failed to create event" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function GET() {
-  try {
-    const events = await prisma.event.findMany({
-      include: {
-        creator: true,
-        participants: true,
-      },
-      orderBy: {
-        startDatetime: "asc",
-      },
+    console.error("Detailed error information:", {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+      cause: error.cause,
     });
 
-    return NextResponse.json(events);
-  } catch (error) {
-    console.error("Error fetching events:", error);
+    if (error.code) {
+      console.error("Prisma error code:", error.code);
+    }
+
     return NextResponse.json(
-      { error: "Error fetching events" },
+      {
+        error: "Failed to create event",
+        details: error.message,
+        code: error.code,
+      },
       { status: 500 }
     );
   }

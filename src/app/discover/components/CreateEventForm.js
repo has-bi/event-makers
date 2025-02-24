@@ -51,7 +51,7 @@ export default function CreateEventForm() {
       startDate.toString() !== "Invalid Date" &&
       endDate.toString() !== "Invalid Date"
     ) {
-      if (endDate <= startDate) {
+      if (endDate < startDate) {
         newErrors.endDatetime = "End date must be after start date";
       }
     }
