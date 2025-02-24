@@ -4,7 +4,6 @@ import { prisma } from "@/utils/prisma";
 import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
-import { addDays } from "date-fns";
 
 export async function loginAction(_, formData) {
   const cookieStore = await cookies();
@@ -39,10 +38,13 @@ export async function loginAction(_, formData) {
     };
   }
 
+  let currentDate = new Date();
+  let newDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+
   const newSession = await prisma.session.create({
     data: {
       userId: user.id,
-      expires: addDays(new Date(), 30),
+      expires: newDate,
     },
   });
 
@@ -50,7 +52,7 @@ export async function loginAction(_, formData) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: true,
-    maxAge: 30 * 24 * 60 * 60,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 
   redirect("/");
