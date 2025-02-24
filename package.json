@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@heroui/button": "^2.2.13",
+    "@heroui/card": "^2.2.13",
     "@heroui/react": "^2.7.2",
     "@prisma/client": "^6.4.1",
     "arctic": "^3.3.0",
