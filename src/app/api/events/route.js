@@ -1,4 +1,5 @@
 // /api/events/route.js
+// /api/events/route.js
 import { NextResponse } from "next/server";
 import { prisma } from "@/utils/prisma";
 
@@ -7,27 +8,23 @@ export async function POST(request) {
     console.log("Starting POST request handling");
 
     const data = await request.json();
-    console.log("Successfully parsed request data:", data);
 
-    // Validation logging
-    console.log("Validating fields...");
-    const missingFields = [];
-    if (!data.title) missingFields.push("title");
-    if (!data.description) missingFields.push("description");
-    if (!data.startDatetime) missingFields.push("startDatetime");
-    if (!data.endDatetime) missingFields.push("endDatetime");
-    if (!data.location) missingFields.push("location");
-    if (!data.capacity) missingFields.push("capacity");
+    console.log("Received data:", data);
 
-    if (missingFields.length > 0) {
-      console.log("Missing fields:", missingFields);
+    // Validate required fields
+    if (
+      !data.title ||
+      !data.description ||
+      !data.startDatetime ||
+      !data.endDatetime ||
+      !data.location ||
+      !data.capacity
+    ) {
       return NextResponse.json(
-        { error: "Missing required fields", fields: missingFields },
+        { error: "Missing required fields" },
         { status: 400 }
       );
     }
-
-    console.log("All fields validated, attempting to create event");
 
     const event = await prisma.event.create({
       data: {
@@ -38,19 +35,32 @@ export async function POST(request) {
         location: data.location,
         capacity: parseInt(data.capacity),
         status: data.status || "OPEN",
-        image: data.image,
-        creatorId: "user-id",
+        image: data.image || null,
+        creatorId: "user-id", // Temporary until auth is implemented
       },
     });
 
-    console.log("Event created successfully:", event);
     return NextResponse.json({ event }, { status: 201 });
   } catch (error) {
-    console.error("Detailed error information:", {
-      message: error.message,
-      name: error.name,
-      stack: error.stack,
-      cause: error.cause,
+    console.error("Server error:", error);
+    // Fixed the syntax error in the error response
+    return NextResponse.json(
+      { error: "Failed to create event" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET() {
+  try {
+    const events = await prisma.event.findMany({
+      include: {
+        creator: true,
+        participants: true,
+      },
+      orderBy: {
+        startDatetime: "asc",
+      },
     });
 
     if (error.code) {
@@ -58,11 +68,7 @@ export async function POST(request) {
     }
 
     return NextResponse.json(
-      {
-        error: "Failed to create event",
-        details: error.message,
-        code: error.code,
-      },
+      { error: "Error fetching events" },
       { status: 500 }
     );
   }
