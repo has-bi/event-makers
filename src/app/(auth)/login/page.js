@@ -12,8 +12,11 @@ export default function Page() {
   return (
     <main className="space-y-5 px-3 pb-3">
       <section className="text-center px-3">
-        <h3 className="font-semibold text-lg">Login to your account</h3>
-        <p className="text-sm">Welcome back! Please enter your details</p>
+        <h3 className="font-bold text-lg">Login to your account</h3>
+        <div className="text-sm">
+          <p>Welcome back!</p>
+          <p>please enter your details</p>
+        </div>
       </section>
       <Form action={formAction} className="space-y-2">
         <div className="flex flex-col gap-4">
@@ -45,9 +48,9 @@ export default function Page() {
       </Form>
       <OAuthButton />
       <section>
-        <p>
+        <p className="text-sm">
           Don&apos;t have an account ?{" "}
-          <Link className="text-blue-700" href="/register">
+          <Link className="font-semibold text-indigo-700" href="/register">
             Register
           </Link>
         </p>

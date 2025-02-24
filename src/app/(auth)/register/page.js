@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <main className="space-y-5 px-3 pb-3">
       <section className="text-center">
-        <h3 className="font-semibold text-lg">Register</h3>
+        <h3 className="font-bold text-lg">Register</h3>
         <p className="text-sm">Create an account and start to join event</p>
       </section>
 
@@ -49,9 +49,9 @@ export default function Page() {
         </Button>
       </Form>
       <section>
-        <p>
+        <p className="text-sm">
           Have an account ?{" "}
-          <Link className="text-blue-700" href="/login">
+          <Link className="font-semibold text-indigo-700" href="/login">
             Login
           </Link>
         </p>
