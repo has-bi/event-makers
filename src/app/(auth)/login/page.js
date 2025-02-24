@@ -20,6 +20,7 @@ export default function Page() {
       </section>
       <form action={formAction} className="w-full max-w-xs">
         <div className="flex flex-col gap-3 pb-3">
+          <label>Email</label>
           <Input
             isRequired
             name="email"
@@ -27,6 +28,7 @@ export default function Page() {
             placeholder="email"
             variant="bordered"
           />
+          <label>Password</label>
           <Input
             isRequired
             name="password"
