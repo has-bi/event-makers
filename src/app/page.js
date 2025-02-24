@@ -1,15 +1,16 @@
+"use client";
+
 import { Button } from "@heroui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/30">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <a href="/" className="text-xl font-semibold text-indigo-600">
-            EventMaker
-          </a>
+          <a className="text-2xl font-bold text-indigo-500">EventMakers.</a>
 
           <div className="flex gap-3">
             <Button
@@ -41,13 +42,15 @@ export default function LandingPage() {
             Setup an event page, invite friends, and sell tickets. Make an event
             like a pro here!
           </p>
-          <Button
-            color="primary"
-            variant="shadow"
-            className="cursor-pointer font-bold px-4 py-2 bg-indigo-500  text-white rounded-lg shadow-md transform transition duration-300 hover:scale-110"
-          >
-            Start Event
-          </Button>
+          <Link href="/discover">
+            <Button
+              color="primary"
+              variant="shadow"
+              className="cursor-pointer font-bold px-4 py-2 bg-indigo-500  text-white rounded-lg shadow-md transform transition duration-300 hover:scale-110"
+            >
+              Start Event
+            </Button>
+          </Link>
         </div>
 
         {/* Right Column - Image */}

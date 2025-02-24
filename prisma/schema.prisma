@@ -4,6 +4,8 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,53 +16,55 @@ datasource db {
 }
 
 model User {
-  id         String @id @default(uuid())
-  email      String @unique
-  password   String
+  id         String   @id @default(uuid())
+  email      String   @unique
+  password   String   // Required field for password
   name       String
-  googleId   String? @unique
+  googleId   String?  @unique
   createdAt  DateTime @default(now())
 
-  events     Event[] @relation("UserEvents")
+  events       Event[]       @relation("UserEvents")
   participants Participant[]
-  sessions Session[]
+  sessions     Session[]
+
+  @@index([email])
 }
 
 model Event {
-  id          String @id @default(uuid())
-  title       String
-  description String
+  id            String   @id @default(uuid())
+  title         String
+  description   String
   startDatetime DateTime
-  endDatetime DateTime
-  location    String
-  image       String?
-  status      String
-  capacity    Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  creatorId   String
+  endDatetime   DateTime
+  location      String
+  image         String?
+  status        String
+  capacity      Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  creatorId     String
 
-  creator     User @relation(fields: [creatorId], references: [id], name: "UserEvents")
+  creator      User          @relation(fields: [creatorId], references: [id], name: "UserEvents")
   participants Participant[]
 }
 
 model Participant {
-  id        String @id @default(uuid())
+  id        String   @id @default(uuid())
   status    String
   createdAt DateTime @default(now())
   eventId   String
   userId    String
 
-  event     Event @relation(fields: [eventId], references: [id])
-  user      User @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
 }
 
 model Session {
-  id        String   @id @default(uuid())  // Added @default(uuid()) to match other models
+  id        String   @id @default(uuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   expires   DateTime
-  data      String?  
+  data      String?
   createdAt DateTime @default(now())
 
   @@index([userId])

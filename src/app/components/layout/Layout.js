@@ -14,15 +14,15 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className=" sticky top-0 z-50 backdrop-blur-md bg-white/30">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/30">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Left Side : Logo, Brand, and Navigation */}
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <h1 className="text-2xl font-bold text-indigo-500">
+                <a className="text-2xl font-bold text-indigo-500">
                   EventMakers.
-                </h1>
+                </a>
               </div>
 
               {/* Navigation Menu */}
