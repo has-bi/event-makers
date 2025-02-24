@@ -24,15 +24,17 @@ model Event {
   title         String
   description   String
   startDatetime DateTime
-  endDatetime   DateTime
-  location      String
-  status        String
-  capacity      Int
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  creatorId     String
-  creator       User          @relation("UserEvents", fields: [creatorId], references: [id])
-  participants  Participant[]
+  endDatetime DateTime
+  location    String
+  image       String?
+  status      String
+  capacity    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  creatorId   String
+
+  creator     User @relation(fields: [creatorId], references: [id], name: "UserEvents")
+  participants Participant[]
 }
 
 model Participant {
