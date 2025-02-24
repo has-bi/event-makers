@@ -16,9 +16,4 @@
   .btn-secondary {
     @apply bg-indigo-700 hover:bg-indigo-600 text-white font-medium;
   }
-
-  .group.flex.flex-col {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
 }
