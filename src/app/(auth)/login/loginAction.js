@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@utils/prisma";
+import { prisma } from "@/utils/prisma";
 import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";

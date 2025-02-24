@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { loginAction } from "./loginAction";
-import { Button, Input } from "@heroui/react";
+import { Form, Button, Input } from "@heroui/react";
 import Link from "next/link";
 import OAuthButton from "../_components/OAuthButton";
 
@@ -15,9 +15,23 @@ export default function Page() {
         <h3 className="font-semibold text-lg">Login to your account</h3>
         <p className="text-sm">Welcome back! Please enter your details</p>
       </section>
-      <form action={formAction} className="space-y-2">
-        <Input name="email" type="email" placeholder="Email" />
-        <Input name="password" type="password" placeholder="Password" />
+      <Form action={formAction} className="space-y-2">
+        <div className="flex flex-col gap-4">
+          <Input
+            isRequired
+            name="email"
+            type="email"
+            placeholder="Email"
+            variant="bordered"
+          />
+          <Input
+            isRequired
+            name="password"
+            type="password"
+            placeholder="Password"
+            variant="bordered"
+          />
+        </div>
         <Button
           type="submit"
           variant="solid"
@@ -28,7 +42,7 @@ export default function Page() {
         >
           Login
         </Button>
-      </form>
+      </Form>
       <OAuthButton />
       <section>
         <p>
