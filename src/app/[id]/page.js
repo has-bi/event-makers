@@ -9,11 +9,18 @@ export default async function Page({ params }) {
 
   const event = await prisma.event.findUnique({
     where: { id },
-    include: { attendees: true },
+    include: {
+      participants: {
+        include: {
+          user: true, // Include user data if you need participant names
+        },
+      },
+      creator: true, // Include creator data if needed
+    },
   });
 
   if (!event) {
-    return <div>Event not found!</div>;
+    return <div className="text-gray-800">Event not found!</div>;
   }
 
   return (
@@ -39,12 +46,12 @@ export default async function Page({ params }) {
           </div>
           <div>
             <p>
-              {moment(event.startDate).format("Do")} -
-              {moment(event.endDate).format("Do MMMM, YYYY")}
+              {moment(event.startDatetime).format("Do")} -
+              {moment(event.endDatetime).format("Do MMMM, YYYY")}
             </p>
             <p>
-              {moment(event.startDate).format("hh:mm a")} -
-              {moment(event.endDate).format("hh:mm a")}
+              {moment(event.startDatetime).format("hh:mm a")} -
+              {moment(event.endDatetime).format("hh:mm a")}
             </p>
           </div>
         </section>
@@ -66,17 +73,17 @@ export default async function Page({ params }) {
           <p>{event.description}</p>
         </section>
 
-        {/* Attendees */}
+        {/* Participants */}
         <section className="mb-4">
-          <h3 className="font-semibold">Attendees</h3>
-          {event.attendees.length > 0 ? (
+          <h3 className="font-semibold">Participants</h3>
+          {event.participants.length > 0 ? (
             <ul className="list-disc pl-5">
-              {event.attendees.map((attendee) => (
-                <li key={attendee.id}>{attendee.name}</li>
+              {event.participants.map((participant) => (
+                <li key={participant.id}>{participant.user.name}</li>
               ))}
             </ul>
           ) : (
-            <p>No attendees yet.</p>
+            <p>No participant yet.</p>
           )}
         </section>
 
