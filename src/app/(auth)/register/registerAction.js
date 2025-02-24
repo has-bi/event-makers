@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@utils/prisma";
 import bcrypt from "bcrypt";
 
 export async function registerAction(_, formData) {
