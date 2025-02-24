@@ -21,14 +21,14 @@ export default function Page() {
             isRequired
             name="email"
             type="email"
-            placeholder="Email"
+            placeholder="email"
             variant="bordered"
           />
           <Input
             isRequired
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="password"
             variant="bordered"
           />
         </div>

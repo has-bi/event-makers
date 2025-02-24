@@ -15,19 +15,17 @@ export default function Page() {
         <p className="text-sm">Create an account and start to join event</p>
       </section>
 
-      <Form onSubmit={formAction} className="space-y-2 w-full max-w-xs">
+      <Form action={formAction} className="space-y-2 w-full max-w-xs">
         <div className="flex flex-col gap-4">
           <Input
             isRequired
             name="name"
-            label="Fullname"
             placeholder="Fullname"
             variant="bordered"
           />
           <Input
             isRequired
             name="email"
-            label="Email"
             type="email"
             placeholder="Email"
             variant="bordered"
@@ -35,7 +33,6 @@ export default function Page() {
           <Input
             isRequired
             name="password"
-            label="Password"
             type="password"
             placeholder="Password"
             variant="bordered"
