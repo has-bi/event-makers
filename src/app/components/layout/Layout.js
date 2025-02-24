@@ -5,9 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { CalendarIcon, EyeIcon } from "@heroicons/react/24/outline";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Link from "next/link";
 =======
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
 
 export default function Layout({ children }) {
   // Get current time in HH:MM format
@@ -53,6 +56,7 @@ export default function Layout({ children }) {
               <div className="text-gray-600">{getCurrentTime()}</div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Link href="/events/create">
                 <Button color="default" variant="light">
                   Create Event
@@ -63,6 +67,11 @@ export default function Layout({ children }) {
                 Create Event
               </Button>
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+              <Button color="default" variant="light">
+                Create Event
+              </Button>
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
 
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                 <svg

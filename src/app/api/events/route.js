@@ -2,7 +2,11 @@
 // /app/api/events/route.js
 =======
 // /api/events/route.js
+<<<<<<< HEAD
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+// /api/events/route.js
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
 import { NextResponse } from "next/server";
 import { prisma } from "@/utils/prisma";
 import { cookies } from "next/headers";
@@ -15,6 +19,7 @@ export async function POST(request) {
     const data = await request.json();
 
     console.log("Received data:", data);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
     // 2) Validate required fields
@@ -30,6 +35,9 @@ export async function POST(request) {
     if (missingFields.length > 0) {
       console.log("Missing fields:", missingFields);
 =======
+=======
+
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
     // Validate required fields
     if (
       !data.title ||
@@ -39,13 +47,17 @@ export async function POST(request) {
       !data.location ||
       !data.capacity
     ) {
+<<<<<<< HEAD
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // 3) Retrieve session cookie (asynchronously)
     const cookieStore = await cookies();
@@ -77,6 +89,8 @@ export async function POST(request) {
     console.log("All fields validated, attempting to create event");
 =======
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
     const event = await prisma.event.create({
       data: {
         title: data.title,
@@ -87,12 +101,17 @@ export async function POST(request) {
         capacity: parseInt(data.capacity),
         status: data.status || "OPEN",
 <<<<<<< HEAD
+<<<<<<< HEAD
         image: data.image,
         creatorId: user.id, // must match a real User.id
 =======
         image: data.image || null,
         creatorId: "user-id", // Temporary until auth is implemented
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+        image: data.image || null,
+        creatorId: "user-id", // Temporary until auth is implemented
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
       },
     });
 
@@ -129,6 +148,7 @@ export async function GET() {
 
     return NextResponse.json(
 <<<<<<< HEAD
+<<<<<<< HEAD
       {
         error: "Failed to fetch events",
         details: error.message,
@@ -137,6 +157,9 @@ export async function GET() {
 =======
       { error: "Error fetching events" },
 >>>>>>> 6e5ef8f (feat: set up the route.js for fetching data)
+=======
+      { error: "Error fetching events" },
+>>>>>>> ead30ba (feat: set up the route.js for fetching data)
       { status: 500 }
     );
   }
