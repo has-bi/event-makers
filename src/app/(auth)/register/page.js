@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { registerAction } from "./registerAction";
 import { Button, Input } from "@heroui/react";
+import OAuthButton from "../_components/OAuthButton";
 import Link from "next/link";
 
 export default function Page() {
@@ -57,6 +58,7 @@ export default function Page() {
           Register
         </Button>
       </form>
+      <OAuthButton />
       <section>
         <p className="text-sm">
           Have an account ?{" "}
