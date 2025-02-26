@@ -16,27 +16,36 @@ export default function Page() {
       </section>
 
       <form action={formAction} className="w-full max-w-xs">
-        <div className="flex flex-col gap-3 pb-3">
-          <Input
-            isRequired
-            name="name"
-            placeholder="Fullname"
-            variant="bordered"
-          />
-          <Input
-            isRequired
-            name="email"
-            type="email"
-            placeholder="Email"
-            variant="bordered"
-          />
-          <Input
-            isRequired
-            name="password"
-            type="password"
-            placeholder="Password"
-            variant="bordered"
-          />
+        <div className="flex flex-col pb-3">
+          <div className="py-1">
+            <label>Full Name</label>
+            <Input
+              isRequired
+              name="name"
+              placeholder="Fullname"
+              variant="bordered"
+            />
+          </div>
+          <div className="py-1">
+            <label>Email</label>
+            <Input
+              isRequired
+              name="email"
+              type="email"
+              placeholder="Email"
+              variant="bordered"
+            />
+          </div>
+          <div className="py-1">
+            <label>Password</label>
+            <Input
+              isRequired
+              name="password"
+              type="password"
+              placeholder="Password"
+              variant="bordered"
+            />
+          </div>
         </div>
         <Button
           type="submit"
