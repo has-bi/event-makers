@@ -55,5 +55,5 @@ export async function loginAction(_, formData) {
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 
-  redirect("/");
+  redirect("/discover");
 }
