@@ -16,6 +16,7 @@ datasource db {
 }
 
 model User {
+<<<<<<< HEAD
   id         String   @id @default(uuid())
   email      String   @unique
   password   String   // Required field for password
@@ -23,6 +24,14 @@ model User {
   googleId   String?  @unique
   createdAt  DateTime @default(now())
 
+=======
+  id           String        @id @default(uuid())
+  email        String        @unique
+  password     String?
+  name         String
+  googleId     String?       @unique
+  createdAt    DateTime      @default(now())
+>>>>>>> c59bd71 (change db user schema)
   events       Event[]       @relation("UserEvents")
   participants Participant[]
   sessions     Session[]
