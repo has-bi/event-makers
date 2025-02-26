@@ -9,10 +9,12 @@ export async function countinueWithGoogleAction(_, formData) {
   const cookieStore = await cookies();
   const state = arctic.generateState();
   const codeVerifier = arctic.generateCodeVerifier();
-  const scopes = ["openid", "profile"];
+  const scopes = ["openid", "profile", "email"];
 
   cookieStore.set("codeVerifier", codeVerifier, {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
   });
 
   const url = google.createAuthorizationURL(state, codeVerifier, scopes);
