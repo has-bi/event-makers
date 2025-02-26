@@ -53,8 +53,6 @@ model Event {
 
 model Participant {
   id        String   @id @default(uuid())
-  id        String   @id @default(uuid())
-  id        String   @id @default(uuid())
   status    String
   createdAt DateTime @default(now())
   eventId   String

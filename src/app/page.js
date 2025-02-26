@@ -46,7 +46,7 @@ export default function LandingPage() {
             Setup an event page, invite friends, and sell tickets. Make an event
             like a pro here!
           </p>
-          <Link href="/discover">
+          <Link href="/login">
             <Button
               color="primary"
               variant="shadow"

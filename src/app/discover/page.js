@@ -18,11 +18,7 @@ export default function EventsPage() {
             <div className="flex justify-between items-center mb-4">
               <div>
                 <h2 className="text-xl font-semibold">Popular Events</h2>
-                <p className="text-gray-400">Jakarta</p>
               </div>
-              <Button color="default" size="sm" variant="flat">
-                View All →
-              </Button>
             </div>
           </div>
         </div>

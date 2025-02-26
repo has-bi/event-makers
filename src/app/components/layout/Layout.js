@@ -4,6 +4,7 @@ import { Button } from "@heroui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { CalendarIcon, EyeIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function Layout({ children }) {
   // Get current time in HH:MM format
@@ -48,9 +49,11 @@ export default function Layout({ children }) {
             <div className="flex items-center space-x-6">
               <div className="text-gray-600">{getCurrentTime()}</div>
 
-              <Button color="default" variant="light">
-                Create Event
-              </Button>
+              <Link href="/events/create">
+                <Button color="default" variant="light">
+                  Create Event
+                </Button>
+              </Link>
 
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                 <svg
