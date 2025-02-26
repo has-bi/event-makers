@@ -28,9 +28,6 @@ model User {
   sessions     Session[]
 
   @@index([email])
-  sessions     Session[]
-
-  @@index([email])
 }
 
 model Event {

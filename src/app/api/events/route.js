@@ -95,29 +95,20 @@ export async function GET() {
       },
     });
 
+    return NextResponse.json(events, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching events:", error);
+
     if (error.code) {
       console.error("Prisma error code:", error.code);
     }
 
     return NextResponse.json(
       {
-        error: "Failed to create event",
+        error: "Failed to fetch events",
         details: error.message,
         code: error.code,
       },
-      { status: 500 }
-    );
-  }
-}
-
-export async function GET() {
-  try {
-    // Example GET for listing events
-    const events = await prisma.event.findMany();
-    return NextResponse.json(events, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to fetch events", details: error.message },
       { status: 500 }
     );
   }
